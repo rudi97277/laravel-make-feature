@@ -17,10 +17,7 @@
   "autoload": {
     "psr-4": {
       "Rudi97277\\LaravelMakeFeature\\": "src/"
-    },
-    "files": [
-      "vendor/illuminate/support/helpers.php"
-    ]
+    }
   },
   "authors": [
     {
