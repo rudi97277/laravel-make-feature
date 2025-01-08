@@ -21,20 +21,32 @@ class ApiRouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $featuresPath = \app_path('Features');
+        $featuresPath = app_path('Features');
 
         if (is_dir($featuresPath)) {
             Route::prefix('api')
                 ->group(function () use ($featuresPath) {
-                    foreach (File::directories($featuresPath) as $featureDir) {
-                        $featureName = basename($featureDir);
-                        $routeFile = "{$featureDir}/{$featureName}Route.php";
-
-                        if (File::exists($routeFile)) {
-                            require $routeFile;
-                        }
-                    }
+                    $this->loadFeatureRoutes($featuresPath);
                 });
+        }
+    }
+
+    /**
+     * Recursively load feature routes.
+     *
+     * @param string $directory
+     * @return void
+     */
+    protected function loadFeatureRoutes(string $directory): void
+    {
+        foreach (File::directories($directory) as $subDir) {
+            $routeFile = "{$subDir}/" . basename($subDir) . "Route.php";
+
+            if (File::exists($routeFile)) {
+                require $routeFile;
+            }
+
+            $this->loadFeatureRoutes($subDir);
         }
     }
 }
