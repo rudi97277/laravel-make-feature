@@ -11,7 +11,13 @@ class MakeFeature extends Command
      *
      * @var string
      */
-    protected $signature = 'make:feature {name}';
+    protected $signature = 'make:feature {name}
+                            {--controller= : Create a controller}
+                            {--service= : Create a service}
+                            {--repository= : Create a repository}
+                            {--model= : Create a model}
+                            {--route= : Create a route}
+    ';
 
     /**
      * The console command description.
@@ -39,17 +45,18 @@ class MakeFeature extends Command
 
         $defaultName = $this->argument('name');
 
-        foreach ($targets as $k => $v) {
-            $stub = file_get_contents(__DIR__ . "/../Stubs/$k.stub");
+        foreach ($targets as $type => $suffix) {
+            $stub = file_get_contents(__DIR__ . "/../Stubs/$type.stub");
+            $flagValue = $this->option($type);
 
-            $data = $this->prepareData("Features/$defaultName/", $k, $defaultName, $v);
+            $data = $this->prepareData("Features/$defaultName/", $defaultName, $suffix, $flagValue);
 
             if (!$data) {
                 continue;
             }
             $this->storeData($data, $stub);
 
-            $this->info("$k $data[path] created successfully.");
+            $this->info("$type $data[path] created successfully.");
         }
     }
 
@@ -64,17 +71,17 @@ class MakeFeature extends Command
      * @param string $type The type of the file being created (e.g., controller, service).
      * @param string $defaultName The full name of the feature (e.g., "Blog/Post").
      * @param string $suffix The suffix to append to the file (e.g., "Controller").
+     * @param string $flagValue The value of the option flag (e.g., "PostController") to change the name manually.
      * @return array|null The prepared data for the file creation or null if the file already exists.
      */
-    public function prepareData(string $appFolder, string $type, string $defaultName, string $suffix = ''): ?array
+    public function prepareData(string $appFolder, string $defaultName, string $suffix = '', ?string $flagValue = null): ?array
     {
         $explodedName = array_filter(explode('/', $defaultName), fn($item) => $item != '');
-        $name = end($explodedName);
+        $name = $flagValue ?: end($explodedName);
         $folder = \app_path($appFolder);
-        $path = $folder . end($explodedName) . "$suffix.php";
+        $path = $folder . $name . "$suffix.php";
 
         if (file_exists($path)) {
-            $this->error("$type already exists!");
             return null;
         }
 
