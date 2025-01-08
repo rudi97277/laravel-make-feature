@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Features{{additionalDir}};
+namespace App\Features\{{pathDir}};
+
 use App\Http\Controllers\Controller;
 
 class {{name}}Controller extends Controller

@@ -47,8 +47,6 @@ class MakeFeature extends Command
             if (!$data) {
                 continue;
             }
-
-            array_unshift($data['additionalDir'], str_replace($v, '', $data['name']));
             $this->storeData($data, $stub);
 
             $this->info("$k $data[path] created successfully.");
@@ -72,10 +70,7 @@ class MakeFeature extends Command
     {
         $explodedName = array_filter(explode('/', $defaultName), fn($item) => $item != '');
         $name = end($explodedName);
-        $additionalDir = array_slice($explodedName, 0, -1);
-
-        $folder = \app_path($appFolder . implode('/', $additionalDir) . (count($additionalDir) > 0 ? '/' : ''));
-
+        $folder = \app_path($appFolder);
         $path = $folder . end($explodedName) . "$suffix.php";
 
         if (file_exists($path)) {
@@ -90,8 +85,7 @@ class MakeFeature extends Command
         return [
             'path' => $path,
             'name' => $name,
-            'arguments' => $defaultName,
-            'additionalDir' => $additionalDir,
+            'pathArr' => $explodedName,
         ];
     }
 
@@ -109,8 +103,8 @@ class MakeFeature extends Command
     public function storeData(array $data, string $stub, array $addKeySearch = [], array $addReplace = [])
     {
         $content = str_replace(
-            array_merge(['{{name}}', '{{additionalDir}}'], $addKeySearch),
-            array_merge([$data['name'], count($data['additionalDir']) > 0 ? '\\' . implode('\\', $data['additionalDir']) : ''], $addReplace),
+            array_merge(['{{name}}', '{{pathDir}}'], $addKeySearch),
+            array_merge([$data['name'], implode('\\', $data['pathArr'])], $addReplace),
             $stub
         );
 
