@@ -21,7 +21,7 @@ class ApiRouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $featuresPath = app_path('Features');
+        $featuresPath = \app_path('Features');
 
         if (is_dir($featuresPath)) {
             Route::prefix('api')
