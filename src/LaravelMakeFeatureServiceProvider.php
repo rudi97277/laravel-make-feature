@@ -4,7 +4,7 @@ namespace Rudi97277\LaravelMakeFeature;
 
 use Illuminate\Support\ServiceProvider;
 use Rudi97277\LaravelMakeFeature\Console\Commands\MakeFeature;
-use Rudi97277\LaravelMakeFeature\Providers\ApiRouteServiceProvider;
+use Rudi97277\LaravelMakeFeature\Providers\RouteServiceProvider;
 
 class LaravelMakeFeatureServiceProvider extends ServiceProvider
 {
@@ -33,6 +33,6 @@ class LaravelMakeFeatureServiceProvider extends ServiceProvider
         }
 
         // Register the ApiRouteServiceProvider to automatically discover API routes
-        $this->app->register(ApiRouteServiceProvider::class);
+        $this->app->register(RouteServiceProvider::class);
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
-class ApiRouteServiceProvider extends ServiceProvider
+class RouteServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
