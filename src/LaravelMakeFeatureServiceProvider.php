@@ -32,7 +32,7 @@ class LaravelMakeFeatureServiceProvider extends ServiceProvider
             ]);
         }
 
-        // Register the ApiRouteServiceProvider to automatically discover API routes
+        // Register the RouteServiceProvider to automatically discover routes
         $this->app->register(RouteServiceProvider::class);
     }
 }

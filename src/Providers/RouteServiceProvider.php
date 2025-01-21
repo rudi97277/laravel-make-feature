@@ -24,10 +24,9 @@ class RouteServiceProvider extends ServiceProvider
         $featuresPath = \app_path('Features');
 
         if (is_dir($featuresPath)) {
-            Route::prefix('api')
-                ->group(function () use ($featuresPath) {
-                    $this->loadFeatureRoutes($featuresPath);
-                });
+            Route::group(function () use ($featuresPath) {
+                $this->loadFeatureRoutes($featuresPath);
+            });
         }
     }
 
