@@ -24,7 +24,7 @@ class RouteServiceProvider extends ServiceProvider
         $featuresPath = \app_path('Features');
 
         if (is_dir($featuresPath)) {
-            Route::group(function () use ($featuresPath) {
+            Route::group([], function () use ($featuresPath) {
                 $this->loadFeatureRoutes($featuresPath);
             });
         }
