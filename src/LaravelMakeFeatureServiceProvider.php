@@ -31,8 +31,5 @@ class LaravelMakeFeatureServiceProvider extends ServiceProvider
                 MakeFeature::class,
             ]);
         }
-
-        // Register the RouteServiceProvider to automatically discover routes
-        $this->app->register(RouteServiceProvider::class);
     }
 }

@@ -16,7 +16,6 @@ class MakeFeature extends Command
                             {--service= : Create a service}
                             {--repository= : Create a repository}
                             {--model= : Create a model}
-                            {--route= : Create a route}
     ';
 
     /**
@@ -40,7 +39,6 @@ class MakeFeature extends Command
             'service' => 'Service',
             'repository' => 'Repository',
             'model' => '',
-            'route' => 'Route'
         ];
 
         $defaultName = $this->argument('name');

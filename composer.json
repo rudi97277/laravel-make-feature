@@ -1,6 +1,6 @@
 {
   "name": "rudi97277/laravel-make-feature",
-  "description": "A package to generate feature-related files (controller, service, repository, model, etc.) and auto-discover routes.",
+  "description": "A package to generate feature-related files (controller, service, repository, and model) with ease for Laravel projects.",
   "license": "MIT",
   "keywords": [
     "laravel",
@@ -28,8 +28,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Rudi97277\\LaravelMakeFeature\\LaravelMakeFeatureServiceProvider",
-        "Rudi97277\\LaravelMakeFeature\\Providers\\RouteServiceProvider"
+        "Rudi97277\\LaravelMakeFeature\\LaravelMakeFeatureServiceProvider"
       ]
     }
   },

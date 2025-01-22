@@ -1,11 +1,10 @@
 # Laravel Make Feature
 
-A Laravel package that helps you generate feature-related files such as controllers, services, repositories, models, and routes with ease. It automates the creation of commonly used files in Laravel projects, promoting clean and consistent feature development.
+A Laravel package that helps you generate feature-related files such as controllers, services, repositories, and models with ease. It automates the creation of commonly used files in Laravel projects, promoting clean and consistent feature development.
 
 ## Features
 
 - **Generate Controller, Service, Repository, and Model**: Quickly scaffold the main components of a feature.
-- **Auto-generate Routes**: Automatically create routes for the generated controllers.
 - **Flexible Naming**: Use any name for the feature, and the package will generate files in the appropriate directories.
 
 ## Installation
